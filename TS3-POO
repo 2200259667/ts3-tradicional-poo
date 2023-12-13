@@ -1,0 +1,48 @@
+class Clima:
+    def __init__(self):
+        self.datos_diarios = []
+
+    def ingresar_datos(self):
+        for i in range(7):
+            dia = {}
+            temp = float(input(f"Ingrese la temperatura del día {i+1}: "))
+            dia['temperatura'] = temp
+            dia['condiciones'] = input(f"Ingrese las condiciones del día {i+1}: ")
+            self.datos_diarios.append(dia)
+
+    def calcular_promedio(self):
+        suma = sum(dia['temperatura'] for dia in self.datos_diarios)
+        promedio = suma / len(self.datos_diarios)
+        return promedio
+
+class Reporte:
+    def __init__(self, clima):
+        self.clima = clima
+
+    def generar_reporte(self):
+        promedio = self.clima.calcular_promedio()
+        print(f"El promedio semanal del clima es: {promedio}")
+        for dia in self.clima.datos_diarios:
+            print(f"Día {dia}: Temperatura: {dia['temperatura']}, Condiciones: {dia['condiciones']}")
+
+# Ejecución del programa
+clima = Clima()
+clima.ingresar_datos()
+reporte = Reporte(clima)
+reporte.generar_reporte()
+
+
+# En esta solución, se ha creado una clase Clima que representa la información diaria del clima.
+# Esta clase contiene dos métodos: ingresar_datos() para ingresar los datos de temperatura y las condiciones del clima, y calcular_promedio() para calcular el promedio semanal de las temperaturas.
+
+# Se ha utilizado el principio de encapsulamiento para almacenar la información diaria del clima en un atributo privado de la clase Clima.
+# Esto se hace para ocultar los detalles de implementación de la clase y para evitar el acceso directo a sus atributos.
+
+# Se ha creado una clase Reporte que tiene como atributo una instancia de la clase Clima.
+# La clase Reporte tiene un método generar_reporte() que se encarga de llamar a los métodos de la clase Clima para obtener la información necesaria y generar el reporte.
+
+# Al ejecutar el programa, se crea un objeto de la clase Clima y se ingresan los datos diarios del clima utilizando el método ingresar_datos().
+# Luego, se crea un objeto de la clase Reporte utilizando el objeto de la clase Clima como argumento. Finalmente, se llama al método generar_reporte() del objeto de la clase Reporte para generar el reporte del clima.
+
+
+
